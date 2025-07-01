@@ -1,7 +1,14 @@
+<form method="POST" action="login.php">
+  <input type="email" name="email" required placeholder="Email">
+  <input type="password" name="password" required placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+
+
 <?php
-// Simple login page placeholder
-echo '<form method="POST" action="login.php">
-<input name="email">
-<input name="password" type="password">
-<button>Login</button>
-</form>';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../controllers/AuthController.php';
+    $controller = new AuthController();
+    $controller->handleLogin($_POST['email'], $_POST['password']);
+}
+?>
